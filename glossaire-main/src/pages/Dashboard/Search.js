@@ -32,15 +32,15 @@ function Search(props) {
 
   return (
     <form action="#">
-      <div className='box'>
-        <button type='submit' className='Search-btn' ref={inputRef} onClick={(e) => { handleSearch(e, searchvalue) }} >
-          <BsSearch className='Bs' />
+      <div className='box1'>
+        <button type='submit' className='Search-btn1' ref={inputRef} onClick={(e) => { handleSearch(e, searchvalue) }} >
+          <BsSearch className='Bs1' />
         </button>
-        <div className='Search-cont'>
-          <input type='search' value={searchvalue} onChange={handlchange} id='Search' className='search' placeholder='Search a word ...' />
+        <div className='Search-cont1'>
+          <input type='search' value={searchvalue} onChange={handlchange} id='Search' className='search1' placeholder='Search a word ...' />
         </div>
-        <a onClick={resetSearchValue} className='Close'>
-          <GrClose className={`${iswriting ? "Gr show" : "Gr"}`} />
+        <a onClick={resetSearchValue} className='Close1'>
+          <GrClose className={`${iswriting ? "Gr1 show1" : "Gr1"}`} />
         </a>
 
       </div>

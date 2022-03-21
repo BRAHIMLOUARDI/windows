@@ -87,7 +87,7 @@ Search.js
 */
 
 
-.box {
+.box1 {
   width: 90%;
   max-width: 600px;
   margin: 0 auto;
@@ -105,11 +105,11 @@ Search.js
 
 }
 
-.Search-cont{
+.Search-cont1{
   margin-bottom: 0.1rem;
 }
 
-.search {
+.search1 {
   height: 100%;
   border: none;
   font-size: 20px;
@@ -120,12 +120,12 @@ Search.js
   font-size: 1rem;
 }
 
-.Bs {
+.Bs1 {
   fill: #4319cf;
   font-size: 1.2rem;
 }
 
-.Search-btn {
+.Search-btn1 {
   height: 35px;
   width: 35px;
   text-align: center;
@@ -138,7 +138,7 @@ Search.js
   border: none;
 }
 
-.Close {
+.Close1 {
   height: 35px;
   width: 35px;
   display: flex;
@@ -147,17 +147,17 @@ Search.js
   align-items: center;
 }
 
-.Gr {
+.Gr1 {
   font-size: 1.2rem;
   display: none;
 }
 
-.show {
+.show1 {
   display: block;
 }
 
 
-.box:focus-within{
+.box1:focus-within{
   border-color: rgba(82, 168, 236, 0.8);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 0px 6px #c0d9ff;
   outline: 0 none;

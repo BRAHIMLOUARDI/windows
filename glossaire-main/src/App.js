@@ -13,7 +13,7 @@ import UpdateProfile from "./auth/components/UpdateProfile"
 import Editword from "./pages/Dashboard/Editword"
 
 
-import Home from "./pages/Home/Home"
+import HOME from "./pages/Home/HOME"
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
           {/* <Route path="/admin/signup" element={<Signup />} /> */}
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/forgot-password" element={<ForgotPassword />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HOME />} />
 
           <Route path="/admin/edit" element={
             <PrivateRoute>
