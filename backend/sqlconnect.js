@@ -1,4 +1,4 @@
-const oracledb = require('oracledb');
+// const oracledb = require('oracledb');
 oracledb.autoCommit = true;
 
 const connect = async function checkConnection() {
