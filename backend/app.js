@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { connect } = require('./sqlconnect')
+const { connect, mongoose } = require('./mongoconnection.js')
 const app = express()
 
 const cors = require('cors')
@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.json())
 
+connect()
+const wordmodel = mongoose.model('glossary')
+
 
 app.get('/', (req, res) => {
 
@@ -23,46 +26,35 @@ app.get('/', (req, res) => {
 
 
 app.post('/query', async (req, res) => {
-
   const { word } = req.body
-  console.log("jjj", word);
-  const sql = await connect()
-  const sqlQuery = `select * from glo where English=:1 or French=:1 or  Arabic=:1`;
-  var result;
-  try {
-    result = await sql.execute(sqlQuery, [word])
-    console.log(result);
 
-  } catch (error) {
-    console.log("select erro", error);
-  }
-
-
-  if (!result.rows.length) {
+  const doc = await wordmodel.findOne({ $or: [{ French: word }, { English: word }, { Arabic: word }] })
+  console.log(doc);
+  if (!doc) {
     return res
-      .status(200)
+      .status(400)
       .json({ success: false, msg: 'word not found' })
   }
-  res.status(201).json({ success: true, msg: result.rows[0] })
+  res.status(201).json({ success: true, data: doc })
 
 })
 
 
 
 app.post('/delete', async (req, res) => {
-
-  const { id } = req.body
-  const sql = await connect()
-  const sqlQuery = `delete  from glo where id=:1`;
-  var result
+  const { _id } = req.body
+  var resulte
   try {
-    result = await sql.execute(sqlQuery, [id])
-    console.log(result);
-
+    resulte = await wordmodel.deleteOne({ _id: _id })
+    console.log(resulte);
   } catch (error) {
-    console.log("select erro", error);
+    return res
+      .status(400)
+      .json({ success: false, msg: 'failed to delete the word' })
+    console.log(error);
   }
-  if (!result.rowsAffected) {
+
+  if (!resulte.deletedCount) {
     return res
       .status(400)
       .json({ success: false, msg: 'failed to delete the word' })
@@ -76,20 +68,22 @@ app.post('/delete', async (req, res) => {
 
 app.post('/create', async (req, res) => {
 
-  const { id, English, French, Arabic } = req.body
-  console.log({ id, English, French, Arabic });
-  const sql = await connect()
-  const sqlQuery = `insert into  glo values(:1,:2,:3,:4)`;
-  var result
+  const { English, French, Arabic } = req.body
+  // console.log({ id, English, French, Arabic });
+  const doc = { English: English, French: French, Arabic: Arabic }
+  var resulte
   try {
-    result = await sql.execute(sqlQuery, [id, English, French, Arabic])
-    console.log(result);
-
+    resulte = await wordmodel.create(doc)
+    console.log(resulte);
   } catch (error) {
-    console.log("select erro", error);
+    return res
+      .status(400)
+      .json({ success: false, msg: 'failed to create the word' })
+
   }
 
-  if (!result) {
+
+  if (!resulte) {
     return res
       .status(400)
       .json({ success: false, msg: 'failed to create the word' })
@@ -103,17 +97,19 @@ app.post('/create', async (req, res) => {
 
 app.post('/update', async (req, res) => {
 
-  const { id, English, French, Arabic } = req.body
-  const sql = await connect()
-  const sqlQuery = `update glo set English=:1,French=:2,Arabic=:3  where id=:4 `;
-  var result
+  const { _id, English, French, Arabic } = req.body
+  const doc = { English: English, French: French, Arabic: Arabic }
+  var resulte
   try {
-    result = await sql.execute(sqlQuery, [English, French, Arabic, id])
-    console.log(result);
+    resulte = await wordmodel.findByIdAndUpdate(_id, doc, { new: true, runValidators: true })
+
   } catch (error) {
-    console.log("select erro", error);
+    return res
+      .status(400)
+      .json({ success: false, msg: 'failed to update the word' })
   }
-  if (!result.rowsAffected) {
+
+  if (!resulte) {
     return res
       .status(400)
       .json({ success: false, msg: 'failed to update the word' })
@@ -126,16 +122,3 @@ app.listen(5000, () => {
   console.log('Server is listening on port 5000....')
 })
 
-
-// req.body
-
-
-
-// fetch('http://localhost:3000/store-data', {
-//         method: 'POST',
-//         // We convert the React state to JSON and send it as the POST body
-//         body: JSON.stringify(this.state)
-//       }).then(function(response) {
-//         console.log(response)
-//         return response.json();
-//       });

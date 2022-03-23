@@ -6,17 +6,17 @@ import Navbar from './Navbar'
 
 const Createword = () => {
   const [message, setmessage] = useState("")
-  const [wordId, setwordId] = useState(510)
+
   const ArabicRef = useRef(null);
   const FrenchRef = useRef(null);
   const EnglishRef = useRef(null);
   const handleClick = async () => {
 
     const word = {
-      id: wordId,
-      Arabic: ArabicRef.current.value,
+
       English: EnglishRef.current.value,
-      French: FrenchRef.current.value
+      French: FrenchRef.current.value,
+      Arabic: ArabicRef.current.value
     }
     try {
 
@@ -29,13 +29,13 @@ const Createword = () => {
           },
           body: JSON.stringify(word)
         })
-      const status = await response.json()
-      console.log(status);
-      if (status.success) {
-        setmessage(status.msg)
-        setwordId(prev => prev + 1)
+      const answer = await response.json()
+      console.log(answer);
+      if (answer.success) {
+        setmessage(answer.msg)
+
       } else {
-        setmessage(status.msg)
+        setmessage(answer.msg)
       }
     } catch (error) {
       setmessage("Failed to create the word")

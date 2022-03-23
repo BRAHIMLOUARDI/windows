@@ -29,18 +29,18 @@ const Editword = () => {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
             },
-            body: JSON.stringify({ id: wordId })
+            body: JSON.stringify({ _id: wordId })
           })
-        const status = await response.json()
-        console.log(status);
+        const answer = await response.json()
+        console.log(answer);
 
-        if (status.success) {
-          setmessage(status.msg)
+        if (answer.success) {
+          setmessage(answer.msg)
           restField("")
           setwordId(0)
 
         } else {
-          setmessage(status.msg)
+          setmessage(answer.msg)
         }
 
       } catch (error) {
@@ -50,7 +50,7 @@ const Editword = () => {
     }
     else {
       const word = {
-        id: wordId,
+        _id: wordId,
         English: EnglishRef.current.value,
         French: FrenchRef.current.value,
         Arabic: ArabicRef.current.value
@@ -67,13 +67,13 @@ const Editword = () => {
             body: JSON.stringify(word)
           })
 
-        const status = await response.json()
-        console.log(status);
-        if (status.success) {
-          setmessage(status.msg)
+        const answer = await response.json()
+        console.log(answer);
+        if (answer.success) {
+          setmessage(answer.msg)
 
         } else {
-          setmessage(status.msg)
+          setmessage(answer.msg)
 
         }
 
@@ -125,20 +125,21 @@ const Editword = () => {
         })
 
 
-      const data = await response.json()
-      if (data.success) {
-        setwordId(data.msg[0])
-        EnglishRef.current.value = data.msg[1]
-        FrenchRef.current.value = data.msg[2]
-        ArabicRef.current.value = data.msg[3]
+      const answer = await response.json()
+      console.log(answer);
+      if (answer.success) {
+        setwordId(answer.data._id)
+        EnglishRef.current.value = answer.data.English
+        FrenchRef.current.value = answer.data.French
+        ArabicRef.current.value = answer.data.Arabic
       } else {
-        setmessage(data.msg)
+        setmessage(answer.msg)
         restField()
       }
-      console.log(data);
+      console.log(answer);
     } catch (error) {
       console.log({ "find error": error });
-      setmessage("word not found1")
+      setmessage("word not found")
     }
   }
 

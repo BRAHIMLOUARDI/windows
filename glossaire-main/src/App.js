@@ -11,9 +11,8 @@ import PrivateRoute from "./auth/components/PrivateRoute"
 import ForgotPassword from "./auth/components/ForgotPassword"
 import UpdateProfile from "./auth/components/UpdateProfile"
 import Editword from "./pages/Dashboard/Editword"
+import HOME from "./pages/Home/Home"
 
-
-import HOME from "./pages/Home/HOME"
 
 
 function App() {
@@ -22,8 +21,6 @@ function App() {
   return (
     (
       <AuthProvider>
-
-
         <Routes>
           <Route exact path="/admin"
             element={
