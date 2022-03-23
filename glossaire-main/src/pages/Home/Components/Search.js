@@ -6,37 +6,80 @@ import { GrClose } from 'react-icons/gr';
 
 
 
-function Search(){
-    const [searchvalue,setsearchvalue]=useState("")
-    const[iswriting,setiswriting]=useState(false)
-    const handlchange=(e)=>{
+function Search(props) {
+    const { setisopen } = props
+    const [searchvalue, setsearchvalue] = useState("")
+    const [iswriting, setiswriting] = useState(false)
+
+    const [message, setmessage] = useState("")
+    const handlchange = (e) => {
         setsearchvalue(e.target.value)
-        if (e.target.value){
+        if (e.target.value) {
             setiswriting(true)
         }
-        else{
+        else {
             setiswriting(false)
         }
     }
 
-    const resetSearchValue=()=>{
+    const resetSearchValue = () => {
         setsearchvalue("")
-        const input =document.getElementById('Search').focus();
+        const input = document.getElementById('Search').focus();
         setiswriting(false);
+    }
+
+    const fetchData = async (value) => {
+
+        try {
+
+            const response = await fetch('http://localhost:5000/query',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ word: value })
+                })
+
+
+            const answer = await response.json()
+            console.log(answer);
+            if (answer.success) {
+
+
+            } else {
+                setmessage(answer.msg)
+
+            }
+            console.log(answer);
+        } catch (error) {
+            console.log({ "find error": error });
+            setmessage("word not found")
+        }
+    }
+
+
+
+    const searchword = () => {
+        if (iswriting) {
+            setisopen(true);
+            fetchData(searchvalue)
+        }
     }
 
     return (
         <div className='Search-bar'>
             <div className='box'>
-               <a href='#' className='Search-btn'>
-                   <BsSearch  className='Bs'/>
-               </a>
-               <div className='Search-cont'>
-                   <input type='search' value={searchvalue} onChange={handlchange} id='Search'  className='search' placeholder='Search Here ...' />
-               </div>
-               <a href='#' onClick={resetSearchValue} className='Close'>
-                   <GrClose   className={`${iswriting ? "Gr show":"Gr"}`}/>
-               </a>
+                <a className='Search-btn' onClick={searchword} >
+                    <BsSearch className='Bs' />
+                </a>
+                <div className='Search-cont'>
+                    <input type='search' value={searchvalue} onChange={handlchange} id='Search' className='search' placeholder='Search Here ...' />
+                </div>
+                <a href='#' onClick={resetSearchValue} className='Close'>
+                    <GrClose className={`${iswriting ? "Gr show" : "Gr"}`} />
+                </a>
             </div>
         </div>
     )

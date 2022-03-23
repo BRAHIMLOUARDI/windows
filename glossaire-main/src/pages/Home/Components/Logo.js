@@ -5,9 +5,8 @@ function Logo(){
     return(
         <div className='logo'>
            <img id='logomg' src={imgLogo} alt="Logo"/>
-              <h1 id='title'>Glossary<span id='title2'>scien</span></h1>
+            <h1 id='title'>Glossary<span id='title2'>scien</span></h1>
         </div>
-
     )
 }
 

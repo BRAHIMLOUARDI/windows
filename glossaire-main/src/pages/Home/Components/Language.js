@@ -1,7 +1,5 @@
 import React from "react";
-import { useState } from "react";
 import { CgArrowsExchangeAlt } from 'react-icons/cg'
-import logo from './Logo.png'
 
 function Language() {
   // const options = [
@@ -12,7 +10,8 @@ function Language() {
   let test1 = 'French';
   let test2 = 'English';
 
-  const changeSelected = (e) => {
+
+  const changeSelected = () => {
     const text = document.getElementById('test').value;
     document.getElementById('test').value = document.getElementById('test2').value;
     document.getElementById('test2').value = text
@@ -22,18 +21,16 @@ function Language() {
 
 
   const autoChange = () => {
-    if (document.getElementById('test2').value == document.getElementById('test').value) {
+    if (document.getElementById('test2').value === document.getElementById('test').value) {
       document.getElementById('test2').value = test1;
       document.getElementById('test').value = test2;
     }
     test2 = document.getElementById('test2').value;
     test1 = document.getElementById('test').value;
   }
-
-
   return (
     <div className="container-Select" defaultValue='French' onChange={autoChange}>
-      <select id='test' className="Elm-Sel1" data-flag="true">
+      <select id='test' className="Elm-Sel1">
         <option value="French" >🇫🇷 French</option>
         <option value="English">🇬🇧 English</option>
         <option value="Arabe">🇸🇦 Arabe</option>
