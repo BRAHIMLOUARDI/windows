@@ -1,22 +1,32 @@
 import React from 'react'
 import { MdOutlineArrowBack } from 'react-icons/md'
-
-function DivShadow(props) {
-  const { setisopen, word, targetlanguge } = props
+import { useHomeContext } from '../Homecontext'
+function DivShadow() {
+  const { isopen, setisopen, wordtraduction } = useHomeContext()
   return (
-    <div className='cardparent'>
-      <div className='divShadow'>
+    <>
+      {isopen &&
 
-        <div className='lignediv'>
-          <a className="return" onClick={() => setisopen(false)}>
-            <MdOutlineArrowBack className='mdk' />
-          </a>
-        </div>
-        <div>
-        </div>
-      </div>
 
-    </div>
+        <div className='cardparent'>
+          <div className='divShadow'>
+
+            <div className='lignediv'>
+              <a className="return" onClick={() => setisopen(false)}>
+                <MdOutlineArrowBack className='mdk' />
+              </a>
+            </div>
+            <div>
+              <h2>word translation :</h2>
+              <p>{wordtraduction}
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+      }
+    </>
   )
 
 }

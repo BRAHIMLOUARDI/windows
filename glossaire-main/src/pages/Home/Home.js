@@ -6,27 +6,28 @@ import './Components/Language.css';
 import Logo from './Components/Logo';
 import Hisfav from './Components/Hisfav';
 import DivShadow from './Components/DivShadow';
-
-
+import { useHomeContext, HomeProvider } from './Homecontext';
 
 
 const Home = () => {
-  const [isopen, setisopen] = useState(false)
+
 
   return (
-    <div>
-      <div className='comp2'>
-        <Logo />
-        <h1 id='text'>Online Science Glossary <br />For Students</h1>
-        <div className='ligne'></div>
-        <div className='comp1'>
-          <Language />
-          <Search setisopen={setisopen} />
+    <HomeProvider>
+      <div>
+        <div className='comp2'>
+          <Logo />
+          <h1 id='text'>Online Science Glossary <br />For Students</h1>
+          <div className='ligne'></div>
+          <div className='comp1'>
+            <Language />
+            <Search />
+          </div>
+          <Hisfav />
         </div>
-        <Hisfav />
+        <DivShadow />
       </div>
-      {isopen && <DivShadow setisopen={setisopen} />}
-    </div>
+    </HomeProvider>
   )
 }
 

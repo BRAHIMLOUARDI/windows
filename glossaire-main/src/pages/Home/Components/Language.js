@@ -1,56 +1,51 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CgArrowsExchangeAlt } from 'react-icons/cg'
-
+import { useHomeContext } from '../Homecontext'
 function Language() {
-  // const options = [
-  //   {label: "🇫🇷   French",value: "French",},
-  //   {label: "🇬🇧 English",value: "English",},
-  //   {label: "🇸🇦 Arabe",value: "Arabe",},
-  // ];
-  let test1 = 'French';
-  let test2 = 'English';
 
-
+  const [selected, setselected] = useState({ selected1: "", selected2: "" })
+  const { selection1, selection2 } = useHomeContext()
   const changeSelected = () => {
-    const text = document.getElementById('test').value;
-    document.getElementById('test').value = document.getElementById('test2').value;
-    document.getElementById('test2').value = text
-    test1 = document.getElementById('test').value;
-    test2 = document.getElementById('test2').value;
+    let temp = selection1.current.value
+    console.log(temp);
+    selection1.current.value = selection2.current.value;
+    selection2.current.value = temp
+    setselected({ selected1: selection1.current.value, selected2: selection2.current.value })
   };
+  useEffect(() => {
+    setselected({ selected1: selection1.current.value, selected2: selection2.current.value })
 
+  }, [])
+  useEffect(() => {
+    console.log("selected", selected);
+  }, [selected])
 
-  const autoChange = () => {
-    if (document.getElementById('test2').value === document.getElementById('test').value) {
-      document.getElementById('test2').value = test1;
-      document.getElementById('test').value = test2;
+  const autoChange = (e) => {
+    // exchange the selected langauges if the new selected langauge  is equal to the one in the other side 
+    if (selection1.current.value !== selected.selected1 && selection1.current.value === selected.selected2) {
+      selection2.current.value = selected.selected1
+
+    } else {
+      if (selection2.current.value !== selected.selected2 && selection2.current.value === selected.selected1) {
+        selection1.current.value = selected.selected2
+      }
     }
-    test2 = document.getElementById('test2').value;
-    test1 = document.getElementById('test').value;
+    setselected({ selected1: selection1.current.value, selected2: selection2.current.value })
   }
   return (
-    <div className="container-Select" defaultValue='French' onChange={autoChange}>
-      <select id='test' className="Elm-Sel1">
+    <div className="container-Select" defaultValue="French" onChange={autoChange}>
+      <select id='selection1' ref={selection1} className="Elm-Sel1">
         <option value="French" >🇫🇷 French</option>
         <option value="English">🇬🇧 English</option>
         <option value="Arabe">🇸🇦 Arabe</option>
       </select>
-      {/* <select selectedValue='English'>
-        {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
-        ))}
-        </select> */}
+
       <div className="echange-bar">
         <a href="#" className="Change" onClick={changeSelected} >
           <CgArrowsExchangeAlt />
         </a>
       </div>
-      {/* <select>
-        {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
-        ))}
-        </select> */}
-      <select id='test2' className='Elm-Sel2' defaultValue='English' onChange={autoChange} >
+      <select id='selection2' ref={selection2} className='Elm-Sel2' defaultValue="English" onChange={autoChange} >
         <option value="French" >🇫🇷 French</option>
         <option value="English">🇬🇧 English</option>
         <option value="Arabe">🇸🇦 Arabe</option>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { BsSearch } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
+import { useHomeContext } from "../Homecontext"
 
 
 
 
-
-function Search(props) {
-    const { setisopen } = props
+function Search() {
+    const { setisopen, setwordtraduction, selection2 } = useHomeContext()
     const [searchvalue, setsearchvalue] = useState("")
     const [iswriting, setiswriting] = useState(false)
 
@@ -46,7 +46,8 @@ function Search(props) {
             const answer = await response.json()
             console.log(answer);
             if (answer.success) {
-
+                let lang = selection2.current.value
+                setwordtraduction(answer.data[lang])
 
             } else {
                 setmessage(answer.msg)
