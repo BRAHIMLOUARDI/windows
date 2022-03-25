@@ -5,9 +5,8 @@ import { useHomeContext } from "../Homecontext"
 
 
 
-
 function Search() {
-    const { setisopen, setwordtraduction, selection2 } = useHomeContext()
+    const { setisopen, setwordtraduction, selection2, getContents } = useHomeContext()
     const [searchvalue, setsearchvalue] = useState("")
     const [iswriting, setiswriting] = useState(false)
 
@@ -44,18 +43,15 @@ function Search() {
 
 
             const answer = await response.json()
-            console.log(answer);
             if (answer.success) {
                 let lang = selection2.current.value
                 setwordtraduction(answer.data[lang])
-
+                getContents(answer.data[lang])
             } else {
                 setmessage(answer.msg)
 
             }
-            console.log(answer);
         } catch (error) {
-            console.log({ "find error": error });
             setmessage("word not found")
         }
     }
@@ -82,6 +78,7 @@ function Search() {
                     <GrClose className={`${iswriting ? "Gr show" : "Gr"}`} />
                 </a>
             </div>
+            {message && <div role="alert" className="search-message" >{message}</div>}
         </div>
     )
 }

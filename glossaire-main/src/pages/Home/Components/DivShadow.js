@@ -2,11 +2,10 @@ import React from 'react'
 import { MdOutlineArrowBack } from 'react-icons/md'
 import { useHomeContext } from '../Homecontext'
 function DivShadow() {
-  const { isopen, setisopen, wordtraduction } = useHomeContext()
+  const { isopen, setisopen, wordtraduction, contents } = useHomeContext()
   return (
     <>
       {isopen &&
-
 
         <div className='cardparent'>
           <div className='divShadow'>
@@ -16,10 +15,13 @@ function DivShadow() {
                 <MdOutlineArrowBack className='mdk' />
               </a>
             </div>
-            <div>
-              <h2>word translation :</h2>
-              <p>{wordtraduction}
-              </p>
+            <div className='word-def-con' >
+              <div className='traduction' >
+                <h3>translation </h3>
+                <p> {wordtraduction} </p>
+              </div>
+              <div dangerouslySetInnerHTML={{ __html: contents }} />
+
 
             </div>
           </div>

@@ -36,7 +36,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* <Route path="/admin/signup" element={<Signup />} /> */}
+
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/forgot-password" element={<ForgotPassword />} />
           <Route path="/" element={<HOME />} />
@@ -51,7 +51,10 @@ function App() {
               <Createword />
             </PrivateRoute>
           } />
+
+
         </Routes>
+
 
       </AuthProvider>
     )

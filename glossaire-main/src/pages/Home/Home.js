@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css'
 import Search from './Components/Search';
 import Language from './Components/Language.js';
@@ -6,7 +6,7 @@ import './Components/Language.css';
 import Logo from './Components/Logo';
 import Hisfav from './Components/Hisfav';
 import DivShadow from './Components/DivShadow';
-import { useHomeContext, HomeProvider } from './Homecontext';
+import { HomeProvider } from './Homecontext';
 
 
 const Home = () => {

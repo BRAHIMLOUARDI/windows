@@ -267,9 +267,10 @@ input[type="search"]::-webkit-search-results-decoration {
   background-color: #ffffff;
   top: 20vh;
   left: 27%;
-  border-radius: 35px;
+  border-radius: 15px;
   
 }
+
 
 .lignediv {
   height: 70px;
@@ -286,7 +287,7 @@ input[type="search"]::-webkit-search-results-decoration {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 35px;
+  border-radius: 50%;
   background-color: #0073f1;
   margin-left: 15px;
 }
@@ -305,4 +306,22 @@ input[type="search"]::-webkit-search-results-decoration {
   top: 0px;
   place-items: center;
   background-color: rgba(0,0,0, 0.8);
+}
+
+
+.word-def-con{
+  overflow-y: scroll;
+  height: 414px;
+  padding: 1.25rem;
+}
+
+.traduction{
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+}
+.traduction h3{
+  font-weight: 500;
+  color: hsl(209, 23%, 60%);
+  
 }
