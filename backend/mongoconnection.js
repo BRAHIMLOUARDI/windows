@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const menu = require('./data')
+
 
 
 const wordSchema = new mongoose.Schema(

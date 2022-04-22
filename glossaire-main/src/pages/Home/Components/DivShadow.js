@@ -17,10 +17,12 @@ function DivShadow() {
             </div>
             <div className='word-def-con' >
               <div className='traduction' >
-                <h3>translation </h3>
+                <h3>translation :</h3>
                 <p> {wordtraduction} </p>
               </div>
-              <div dangerouslySetInnerHTML={{ __html: contents }} />
+              <div className='ligne-wiki'></div>
+              <h2>Definition : <br /></h2>
+              <div className='wiki' dangerouslySetInnerHTML={{ __html: contents }} />
 
 
             </div>

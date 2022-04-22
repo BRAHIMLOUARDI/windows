@@ -44,12 +44,13 @@ function Search() {
 
             const answer = await response.json()
             if (answer.success) {
+                setisopen(true);
                 let lang = selection2.current.value
                 setwordtraduction(answer.data[lang])
                 getContents(answer.data[lang])
             } else {
+                // setisopen(false)
                 setmessage(answer.msg)
-
             }
         } catch (error) {
             setmessage("word not found")
@@ -59,9 +60,11 @@ function Search() {
 
 
     const searchword = () => {
+        setmessage("")
         if (iswriting) {
-            setisopen(true);
-            fetchData(searchvalue)
+            console.log(searchvalue.split(" "))
+            fetchData(searchvalue.split(" ")[0])
+
         }
     }
 
@@ -78,7 +81,7 @@ function Search() {
                     <GrClose className={`${iswriting ? "Gr show" : "Gr"}`} />
                 </a>
             </div>
-            {message && <div role="alert" className="search-message" >{message}</div>}
+            {message && <div role="alert" className="search-message" ><p>{message}</p></div>}
         </div>
     )
 }
