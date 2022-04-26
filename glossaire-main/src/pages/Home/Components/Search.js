@@ -44,10 +44,11 @@ function Search() {
 
             const answer = await response.json()
             if (answer.success) {
-                setisopen(true);
+
                 let lang = selection2.current.value
                 setwordtraduction(answer.data[lang])
                 getContents(answer.data[lang])
+                setisopen(true);
             } else {
                 // setisopen(false)
                 setmessage(answer.msg)

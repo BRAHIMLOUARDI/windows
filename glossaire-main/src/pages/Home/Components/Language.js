@@ -32,9 +32,9 @@ function Language() {
   return (
     <div className="container-Select" defaultValue="French" onChange={autoChange}>
       <select id='selection1' ref={selection1} className="Elm-Sel1">
-        <option value="French" >🇫🇷 French</option>
-        <option value="English">🇬🇧 English</option>
-        <option value="Arabic">🇸🇦 Arabic</option>
+        <option value="French" >French</option>
+        <option value="English">English</option>
+        <option value="Arabic">Arabic</option>
       </select>
 
       <div className="echange-bar">
@@ -43,9 +43,9 @@ function Language() {
         </a>
       </div>
       <select id='selection2' ref={selection2} className='Elm-Sel2' defaultValue="English" onChange={autoChange} >
-        <option value="French" >🇫🇷 French</option>
-        <option value="English">🇬🇧 English</option>
-        <option value="Arabic">🇸🇦 Arabic</option>
+        <option value="French" >French</option>
+        <option value="English">English</option>
+        <option value="Arabic">Arabic</option>
       </select>
     </div>
   )
