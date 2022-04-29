@@ -31,14 +31,13 @@ function Search() {
 
         try {
 
-            const response = await fetch('http://localhost:5000/query',
+            const response = await fetch(`http://127.0.0.1:8000/query/${value}/`,
                 {
-                    method: 'POST',
+                    method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ word: value })
                 })
 
 

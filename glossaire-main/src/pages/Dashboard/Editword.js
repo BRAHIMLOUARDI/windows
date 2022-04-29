@@ -22,14 +22,14 @@ const Editword = () => {
       try {
         // await deleteDoc(ref);
 
-        const response = await fetch('http://localhost:5000/delete',
+        const response = await fetch(`http://127.0.0.1:8000/query/${wordId}/`,
           {
-            method: 'POST',
+            method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
             },
-            body: JSON.stringify({ _id: wordId })
+
           })
         const answer = await response.json()
         console.log(answer);
@@ -37,7 +37,7 @@ const Editword = () => {
         if (answer.success) {
           setmessage(answer.msg)
           restField("")
-          setwordId(0)
+          setwordId(-1)
 
         } else {
           setmessage(answer.msg)
@@ -50,16 +50,16 @@ const Editword = () => {
     }
     else {
       const word = {
-        _id: wordId,
+
         English: EnglishRef.current.value,
         French: FrenchRef.current.value,
         Arabic: ArabicRef.current.value
       }
       try {
 
-        const response = await fetch('http://localhost:5000/update',
+        const response = await fetch(`http://127.0.0.1:8000/query/${wordId}/`,
           {
-            method: 'POST',
+            method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
@@ -102,7 +102,7 @@ const Editword = () => {
     setmessage("")
   }
   const restField = () => {
-    setwordId(0)
+    setwordId(-1)
     ArabicRef.current.value = ""
     FrenchRef.current.value = ""
     EnglishRef.current.value = ""
@@ -114,21 +114,21 @@ const Editword = () => {
 
     try {
 
-      const response = await fetch('http://localhost:5000/query',
+      const response = await fetch(`http://127.0.0.1:8000/query/${value}/`,
         {
-          method: 'POST',
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify({ word: value })
+          // body: JSON.stringify({ word: value })
         })
 
 
       const answer = await response.json()
       console.log(answer);
       if (answer.success) {
-        setwordId(answer.data._id)
+        setwordId(answer.data.id)
         EnglishRef.current.value = answer.data.English
         FrenchRef.current.value = answer.data.French
         ArabicRef.current.value = answer.data.Arabic

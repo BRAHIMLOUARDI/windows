@@ -12,6 +12,7 @@ import ForgotPassword from "./auth/components/ForgotPassword"
 import UpdateProfile from "./auth/components/UpdateProfile"
 import Editword from "./pages/Dashboard/Editword"
 import HOME from "./pages/Home/Home"
+import App1 from "./test"
 
 
 
@@ -20,7 +21,7 @@ function App() {
 
   return (
 
-
+    // <App1 />
     (
       <AuthProvider>
         <Routes>

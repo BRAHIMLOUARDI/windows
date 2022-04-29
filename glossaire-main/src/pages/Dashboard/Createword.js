@@ -20,7 +20,7 @@ const Createword = () => {
     }
     try {
 
-      const response = await fetch('http://localhost:5000/create',
+      const response = await fetch('http://127.0.0.1:8000/query/',
         {
           method: 'POST',
           headers: {
@@ -33,7 +33,9 @@ const Createword = () => {
       console.log(answer);
       if (answer.success) {
         setmessage(answer.msg)
-
+        EnglishRef.current.value = ""
+        FrenchRef.current.value = ""
+        ArabicRef.current.value = ""
       } else {
         setmessage(answer.msg)
       }
