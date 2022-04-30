@@ -366,3 +366,29 @@ input[type="search"]::-webkit-search-results-decoration {
   background-color: #d2d8dd;
   margin: 1rem 0rem;
 }
+
+.sitelang {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+
+}
+
+.sitelan_sel {
+  padding: 0.25rem;
+  background-color: transparent;
+}
+
+.sitelan_sel :focus {
+  padding: 0.25rem;
+  background-color: transparent;
+  border: transparent;
+}
+
+select:focus {
+  outline: 0;
+}
+
+.sitelan_sel option {
+  background-color: transparent;
+}

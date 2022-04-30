@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 
 const HomeContext = React.createContext()
 
+
 const url =
   "https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=";
 
@@ -9,15 +10,6 @@ const HomeProvider = ({ children }) => {
 
   const [contents, setContents] = useState([]);
 
-
-
-
-
-
-
-
-
-  // isopen refer to the translation card
 
   const [isopen, setisopen] = useState(false)
   const [wordtraduction, setwordtraduction] = useState("")
@@ -51,7 +43,8 @@ const HomeProvider = ({ children }) => {
     selection1,
     selection2,
     getContents,
-    contents
+    contents,
+
   }
   useEffect(() => {
   }, [wordtraduction])

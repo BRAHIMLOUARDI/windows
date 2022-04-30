@@ -121,7 +121,7 @@ const Editword = () => {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          // body: JSON.stringify({ word: value })
+
         })
 
 
