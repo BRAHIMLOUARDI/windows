@@ -1,9 +1,29 @@
+import os
+from rest_framework.decorators import action
 from requests import Response
 from backend.models import Words
 from backend.serializers import wordsSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.http import Http404
+from django.shortcuts import render
+
+from keras.models import load_model
+from backend.model import logits_to_sentence
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
+
+model=load_model('./backend/my_model_v3.h5')
+
+
+
+
+
+
+
+
+
+
 
 class wordsViewSet(viewsets.ModelViewSet):
     queryset = Words.objects.all()
@@ -17,6 +37,7 @@ class wordsViewSet(viewsets.ModelViewSet):
     def retrieve(self,request,*args,**kwargs):
       
         words=Words.objects.filter(English=kwargs['pk'])
+        print(args)
         if words.exists():
            serializer=wordsSerializer(words,many=True)
            return Response({ "success": True, "data": serializer.data[0] })
@@ -55,6 +76,11 @@ class wordsViewSet(viewsets.ModelViewSet):
            return Response({ "success": True, "msg": 'word created successfully' })
         
         return Response({ "success": False, "msg": 'failed to create the word' })
+    @action(detail=True)
+    def translate(self, request, *args, **kwargs):
+        print(kwargs['pk'])
+        prex=logits_to_sentence(model ,kwargs['pk']).split("   ")[0]
+        return Response({"ans":prex })
 
 # class wordsList(generics.ListCreateAPIView):
 #     queryset = Words.objects.all()
