@@ -7,7 +7,11 @@ const url =
   "https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=";
 
 const HomeProvider = ({ children }) => {
-
+  var langauge = localStorage.getItem("sitelangauge")
+  console.log(langauge);
+  langauge = langauge ? langauge : "English"
+  console.log(langauge);
+  const [sitelangauge, setsitelangauge] = useState(langauge)
   const [contents, setContents] = useState([]);
 
 
@@ -44,7 +48,8 @@ const HomeProvider = ({ children }) => {
     selection2,
     getContents,
     contents,
-
+    sitelangauge,
+    setsitelangauge
   }
   useEffect(() => {
   }, [wordtraduction])

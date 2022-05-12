@@ -4,44 +4,29 @@ import Search from './Components/Search';
 import Language from './Components/Language.js';
 import './Components/Language.css';
 import Logo from './Components/Logo';
-import Hisfav from './Components/Hisfav';
+import { pagetext } from './textdata';
 import DivShadow from './Components/DivShadow';
-import { HomeProvider, useHomeContext } from './Homecontext';
+import { useHomeContext } from './Homecontext'
+
+// import { HomeProvider } from './Homecontext';
 import SiteLangauge from './Components/SiteLangaug';
-
-const pagetext = {
-  English: {
-    title: "glossary",
-    English: "English",
-    French: "French",
-    Arabic: "Arabic",
-  },
-  French: {
-    title: "glossaire",
-    English: "anglais",
-    French: "francais",
-    Arabic: "arabe",
-  },
-  Arabic: {
-    title: "معجم",
-    English: "longli",
-    French: "froncais",
-    Arabic: "3rbia",
-  }
-}
+// var sherdSiteLangauge
 const Home = () => {
+  const { sitelangauge } = useHomeContext()
 
 
-  var langauge = localStorage.getItem("sitelangauge")
-  langauge = langauge ? langauge : "English"
-  console.log(langauge);
-  const [sitelangauge, setsitelangauge] = useState(langauge)
+  // var langauge = localStorage.getItem("sitelangauge")
+  // console.log(langauge);
+  // langauge = langauge ? langauge : "English"
+  // console.log(langauge);
+  // const [sitelangauge, setsitelangauge] = useState(langauge)
+  // sherdSiteLangauge = sitelangauge
 
   useEffect(() => {
 
   }, [])
   return (
-    <HomeProvider>
+    <>
       <div>
         <div className='comp2'>
           <Logo />
@@ -51,13 +36,15 @@ const Home = () => {
             <Language />
             <Search />
           </div>
-          <Hisfav />
+
         </div>
         <DivShadow />
       </div>
-      <SiteLangauge setsitelangauge={setsitelangauge} />
-    </HomeProvider>
+      <SiteLangauge />
+    </>
   )
 }
 
+
+// export { sherdSiteLangauge }
 export default Home;

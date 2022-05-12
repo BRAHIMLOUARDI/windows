@@ -48,6 +48,7 @@ function Search() {
                 setwordtraduction(answer.data[lang])
                 getContents(answer.data[lang])
                 setisopen(true);
+                setmessage("")
             } else {
                 // setisopen(false)
                 setmessage(answer.msg)
@@ -60,7 +61,7 @@ function Search() {
 
 
     const searchword = () => {
-        setmessage("")
+
         if (iswriting) {
             console.log(searchvalue.split(" "))
             fetchData(searchvalue.split(" ")[0])
@@ -69,20 +70,22 @@ function Search() {
     }
 
     return (
-        <div className='Search-bar'>
-            <div className='box'>
-                <a className='Search-btn' onClick={searchword} >
-                    <BsSearch className='Bs' />
-                </a>
-                <div className='Search-cont'>
-                    <input type='search' value={searchvalue} onChange={handlchange} id='Search' className='search' placeholder='Search Here ...' />
+        <>
+            <div className='Search-bar'>
+                <div className='box'>
+                    <a className='Search-btn' onClick={searchword} >
+                        <BsSearch className='Bs' />
+                    </a>
+                    <div className='Search-cont'>
+                        <input type='search' value={searchvalue} onChange={handlchange} id='Search' className='search' placeholder='Search Here ...' />
+                    </div>
+                    <a href='#' onClick={resetSearchValue} className='Close'>
+                        <GrClose className={`${iswriting ? "Gr show" : "Gr"}`} />
+                    </a>
                 </div>
-                <a href='#' onClick={resetSearchValue} className='Close'>
-                    <GrClose className={`${iswriting ? "Gr show" : "Gr"}`} />
-                </a>
+                {message && <div role="alert" className="search-message" ><p>{message}</p></div>}
             </div>
-            {message && <div role="alert" className="search-message" ><p>{message}</p></div>}
-        </div>
+        </>
     )
 }
 

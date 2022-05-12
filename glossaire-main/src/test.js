@@ -35,6 +35,5 @@ const App1 = () => {
   return (
     <button onClick={handleSubmit} >add</button >
   );
-
 }
 export default App1;

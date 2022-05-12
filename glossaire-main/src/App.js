@@ -3,7 +3,7 @@ import React from "react"
 import { Route, Routes } from "react-router-dom"
 import { AuthProvider } from "./auth/contexts/AuthContext"
 import Createword from "./pages/Dashboard/Createword"
-
+import { HomeProvider } from "./pages/Home/Homecontext"
 import Dashboard from "./pages/Dashboard/Dasdboard"
 import "./auth/auth.css"
 import Login from "./auth/components/Login"
@@ -42,7 +42,12 @@ function App() {
 
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/forgot-password" element={<ForgotPassword />} />
-          <Route path="/" element={<HOME />} />
+          <Route path="/" element={
+            <HomeProvider>
+
+              <HOME />
+            </HomeProvider>
+          } />
 
           <Route path="/admin/edit" element={
             <PrivateRoute>
