@@ -1,9 +1,8 @@
-
 import React from "react"
 import { Route, Routes } from "react-router-dom"
 import { AuthProvider } from "./auth/contexts/AuthContext"
 import Createword from "./pages/Dashboard/Createword"
-import { HomeProvider } from "./pages/Home/Homecontext"
+// import { HomeProvider } from "./pages/Home/Homecontext"
 import Dashboard from "./pages/Dashboard/Dasdboard"
 import "./auth/auth.css"
 import Login from "./auth/components/Login"
@@ -11,17 +10,18 @@ import PrivateRoute from "./auth/components/PrivateRoute"
 import ForgotPassword from "./auth/components/ForgotPassword"
 import UpdateProfile from "./auth/components/UpdateProfile"
 import Editword from "./pages/Dashboard/Editword"
-import HOME from "./pages/Home/Home"
-import App1 from "./test"
+// import HOME from "./pages/Home/Home"
+import Translate from "./pages/Homepage/Components/Translate"
+import PhraseTranslate from "./pages/Homepage/Components/PhraseTranslate"
+// import App1 from "./test"
+// import HomePage from "./pages/Homepage/Homepage"
 
 
 
 function App() {
-
-
   return (
 
-    // <App1 />
+
     (
       <AuthProvider>
         <Routes>
@@ -42,12 +42,7 @@ function App() {
 
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/forgot-password" element={<ForgotPassword />} />
-          <Route path="/" element={
-            <HomeProvider>
 
-              <HOME />
-            </HomeProvider>
-          } />
 
           <Route path="/admin/edit" element={
             <PrivateRoute>
@@ -59,6 +54,16 @@ function App() {
               <Createword />
             </PrivateRoute>
           } />
+          <Route exact path="/"
+            element={
+              <Translate />
+            }
+          />
+          <Route exact path="/Translate"
+            element={
+              <PhraseTranslate />
+            }
+          />
 
 
         </Routes>
@@ -70,3 +75,15 @@ function App() {
 }
 
 export default App;
+
+
+
+{/* <Route path="/" element={
+            <HomeProvider>
+
+               <HOME /> 
+              <HomePage />
+            </HomeProvider>
+          } /> */}
+
+// box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);

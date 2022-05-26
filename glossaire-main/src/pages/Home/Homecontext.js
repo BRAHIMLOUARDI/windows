@@ -3,8 +3,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 const HomeContext = React.createContext()
 
 
-const url =
-  "https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=";
+const url = "https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=&titles=";
 
 const HomeProvider = ({ children }) => {
   var langauge = localStorage.getItem("sitelangauge")

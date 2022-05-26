@@ -31,7 +31,7 @@ function Search(props) {
   }
 
   return (
-    <form action="#">
+    <form action="#" className='searchbox_admin'>
       <div className='box1'>
         <button type='submit' className='Search-btn1' ref={inputRef} onClick={(e) => { handleSearch(e, searchvalue) }} >
           <BsSearch className='Bs1' />
